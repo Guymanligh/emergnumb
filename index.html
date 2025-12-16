@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Экстренные номера РК</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.card {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(15px);
+    border-radius: 22px;
+    width: 100%;
+    max-width: 380px;
+    padding: 22px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.item {
+    background: rgba(255,255,255,0.15);
+    padding: 14px 16px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+}
+
+.item b {
+    font-size: 18px;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #00c6ff;
+    color: black;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>📂 Экстренные номера РК</h1>
+
+    <div class="item"><b>112</b> — Единый номер</div>
+    <div class="item"><b>101</b> — Пожарная</div>
+    <div class="item"><b>102</b> — Полиция</div>
+    <div class="item"><b>103</b> — Скорая помощь</div>
+    <div class="item"><b>104</b> — Газовая служба</div>
+
+    <button onclick="saveContacts()">Сохранить в контакты</button>
+
+    <div class="footer">
+        Поддерживается Android и iPhone
+    </div>
+</div>
+
+<script>
+function saveContacts() {
+    const vcard = `
+BEGIN:VCARD
+VERSION:3.0
+FN:Экстренные номера РК
+N:Экстренные;Номера;РК;;
+TEL:112
+TEL:101
+TEL:102
+TEL:103
+TEL:104
+END:VCARD
+    `.trim();
+
+    const blob = new Blob([vcard], { type: "text/vcard" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "Экстренные_номера_РК.vcf";
+    link.click();
+}
+</script>
+
+</body>
+</html>
